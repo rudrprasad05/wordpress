@@ -51,7 +51,13 @@ const AuthForm = () => {
     setIsLoading(true);
     axios
       .post("/api/register", data)
-      .then(() => signIn("credentials", data))
+      .then(() =>
+        signIn("credentials", {
+          ...data,
+          redirect: false,
+          callbackUrl: `/dashboard`,
+        })
+      )
       .catch(() => {
         toast.error("Something went wrong");
       })

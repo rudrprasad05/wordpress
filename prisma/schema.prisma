@@ -54,7 +54,7 @@ model Site {
     createdAt       DateTime   @default(now())
     published       Boolean    @default(false)
 
-    name            String?
+    name            String?    @unique
     description     String?    @default("")
     content         String?    @default("[]")
 
@@ -66,5 +66,5 @@ model Site {
 
     shareURL        String?       @unique @default(uuid())
 
-  @@unique([name, authorId])
+    @@unique([name, authorId])
 }

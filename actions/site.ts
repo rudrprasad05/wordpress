@@ -66,6 +66,33 @@ export async function GetSites() {
   });
 }
 
+export async function GetSiteByName(name: string) {
+  // const user = await getCurrentUser();
+  // if (!user) {
+  //   throw new UserNotFoundErr();
+  // }
+
+  // await prisma.site.update({
+  //   data: {
+  //     visits: {
+  //       increment: 1,
+  //     },
+  //   },
+  //   where: {
+  //     name: name,
+  //   },
+  // });
+
+  return await prisma.site.findFirst({
+    where: {
+      name,
+    },
+    include: {
+      author: true,
+    },
+  });
+}
+
 export async function GetSiteById(id: string) {
   // const user = await getCurrentUser();
   // if (!user) {
